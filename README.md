@@ -2,14 +2,22 @@
 
 `scOCCAM` 
 (sparse **s**ingle-**c**ell) **O**mics **C**ross-**C**ontext **A**greement **M**aps
+
 do 'omic correlations in one cell type extend to others?
 
 **what?** `scOCCAM` is an R package that helps visualize and quantify the specificity of 'omic' links across contexts (across cell types, batches, treatment groups, etc), with special emphasis on sparse multiomic correlation patterns. 
 
 **why?**
-* there are established methods to interrogate multi-'omic relationships, including the construction of sparse networks (with sparsity arguably more interpretable) .
-* however, i've found their adaptation to the single-cell setting incomplete: namely, assessing **cell-type specificity** is a fundamental task with single-cell data.
-* how can we assess **whether multiomic relationships are context-shared or -specific?**
+* there are established methods to interrogate multi-'omic relationships, including the construction of sparse networks (with sparsity arguably more interpretable).
+* however, i've found their adaptation to the single-cell setting incomplete: namely, assessing cell-type specificity is a fundamental task with single-cell data.
+* but how can we assess whether multiomic relationships are context-shared or -specific?
+
+
+## example gallery
+
+example visualizations from `scOCCAM`'s application on the "bmcite" bone-marrow CITE-seq dataset (500 RNA genes, 25 antibody-derived tags or ADT) across five cell types x two batches (ten contexts). The resulting cross-context sCCA networks suggest RNA-ADT correlations reproduce across batches (i.e., limited technical effect) but not across cell types (true between type biological effect).
+
+![example scOCCAM visualizations. (a) loadings by factor. (b) MDS plot based on Jaccard distance and (c) heatmap of Jaccard distances by top loading features of ADT [left] and gene features [right] suggests replicate batches overlap, cell types do not. (d) multi-modal ADT-RNA correlation edges, with nodes positioned by gene-gene expression.](man/figures/gallery-readme.png)
 
 # pipeline
 
@@ -51,13 +59,6 @@ flowchart TD
 * `scOCCAM` includes wrappers to apply Sparse Canonical Correlation Analysis (`PMA`) from raw data to multiomic network as the frontline method. Sparse PCA, DIABLO (`mixOmics`), and custom networks (i.e., pre-tabulated single- or multiomic node-edge data) are also supported.
 * the multiomic association is fit per cell-type, or other context of interest (e.g., batch, treatment, or case-control).
 * we then assess whether the resulting fit on Context A is common to other contexts B, C, D, ..., with a focus on exploratory visualization rather than statistical inference.
-
-## example gallery
-
-example visualizations from `scOCCAM`'s application on the "bmcite" bone-marrow CITE-seq dataset consisting of 500 highly variable RNA genes + 25 antibody-derived tags (ADT) across five cell types x two batches (ten contexts). The resulting sCCA patterns cross-context suggest RNA-ADT patterns reproduce across batches (i.e., limited technical effect) but not across cell types (true between type biological effect).
-
-
-![example scOCCAM visualizations. (a) loadings by factor. (b) MDS plot based on Jaccard distance and (c) heatmap of Jaccard distances by top loading features of ADT [left] and gene features [right] suggests replicate batches overlap, cell types do not. (d) multi-modal ADT-RNA correlation edges, with nodes positioned by gene-gene expression.](man/figures/gallery-readme.png)
 
 
 ## quick start
